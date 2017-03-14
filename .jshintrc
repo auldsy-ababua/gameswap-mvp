@@ -1,0 +1,1 @@
+{ "esversion": 6,  "devel": true, "predef": ["localStorage","console", "window", "document","X2JS","JSON", "require"]}

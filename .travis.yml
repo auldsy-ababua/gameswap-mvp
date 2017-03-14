@@ -1,0 +1,17 @@
+language: node_js
+node_js: node
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - mongodb-3.2-precise
+    packages:
+    - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: j4oC11ZkzTtZmyS4/EBluki+Ct+aVSu2tYKjIJ/JYrR5XMf3fIQAwpUedW9bD6cUNsNWoZPrhgwWJrPolOE5tSFfwwsYIB+IrLl6yjbBVTzkk9IEp0Tl3Fy2OU0rnZR1y2/Ua2yYSHEzmbA/RBGAoeUOQu2XghAFhEQfLjUYTZXGVtYNaY+v+M9tNdeBtnk8qyShSDUWJidxn/k4924SffRQUeGYVMKBSV/NJN++ZRIo+/KhwQoa/cp/w08pM7YKa0LUZOt+Sh4Wot9sYOHtmxPiRkbLxmsBVWRXbkOTGNKejbBUHhACjETp2/IZvPlThZXG1DqCfI1lCOFBh2k7Fq0IPzL4fv8srvevbUImDthhJiiLHNBCdkJI+JtGKjgJyaPgeJ4ktrqIFBhzfMFk/JF5RLJWgRnJyFfaJppFyCIUpC4RpnVl/AfTWtfMbg/NBxEtK1Xu8DhRNWQMwYxtKw8MlJO+izajvaTrG4LS1LK9mXWX8vCuiize+NW0DV2Kz7WqyYsbs/UN6hpkdz59ViAzoHmbUXMgQEmyyKFAS6e7v99cQcdQwtHn9iMvynfb42z4laTde6YXjyHDAlSgn9bygqXwmN9Fk3tfVyFwfr1vewWbKfeEZsyZ0cjBuyxP7h1pG/V6rSTwzTyfILlAneJX4f8Dv0X9iH+HCCJ6HMs=
+  app: gameswap-aulds
+  on:
+    repo: auldsy-ababua/surpay

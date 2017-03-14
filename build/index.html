@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<!-- gist for this project can be found here: https://gist.github.com/auldsy-ababua/05efd51146647a18f80f1b689a578ce5 -->
+
+<head>
+    <title>Gameswap MVP</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bahiana|Orbitron|Russo+One|Sansita" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="gameswap.1.0.0.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+    <!--nav-->
+    <nav class="nav">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Game Swap</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a id="homeMenu" href="#">Home</a></li>
+                <li><a id="searchMenu" href="#">Matches</a></li>
+                <li><a id="profileMenu" href="#">Profile</a></li>
+                <li><a id="loginMenu" href="#">Login</a></li>
+                <li><a id="logoutMenu" href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--login-->
+    <section id="loginform">
+        <section class="loginform cf">
+            <form name="login" id="login" action="index_submit" method="get" accept-charset="utf-8">
+                <ul>
+                    <li>
+                        <label for="usermail">Username</label>
+                        <input type="text" name="username" id="username" placeholder="username" required>
+                    </li>
+                    <li>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="password" required>
+                    </li>
+                    <li>
+                        <input type="submit" class="waves-effect waves-light btn" id="login-button" value="Login">
+                    </li>
+                </ul>
+                <br>
+                <h5 id="makeProfile">Don't have an account? <a href="#">Sign up here!!!!!</a></h5>
+            </form>
+        </section>
+    </section>
+    <!--create profile screen-->
+    <section id="create-profile">
+        <div class="row">
+            <form class="col s12" id="signinForm">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate" required>
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="This will act as your login ID" id="email" type="email" class="validate" required>
+                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password" type="password" class="validate" required>
+                        <label for="password">Create Password</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="city" type="text" class="validate" required>
+                        <label for="city">City</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="state" type="text" class="validate" required>
+                        <label for="state">State/Region/Province</label>
+                    </div>
+                </div>
+                <input type="submit" class="waves-effect waves-light btn" value="Let's trade!">
+            </form>
+        </div>
+    </section>
+
+
+
+    <!--home screen-->
+    <section id="home">
+        <ul class="slides">
+            <li>
+                <img src="https://images.unsplash.com/10/wii.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=43cfc3deeed70e165663284179867d30">
+                <div class="caption center-align">
+                    <h3>The End of Rip-off Trades Is Here</h3>
+                </div>
+            </li>
+        </ul>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h4 class="white-text">Our Mission</h5>
+                        <h5 class="grey-text text-lighten-4">To cut out the gamestop middleman and save you money.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h4 class="white-text">Find Me</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3 footer-text" href="https://twitter.com/colin_aulds">Follow Me On Twitter</a></li>
+                            <li><a class="grey-text text-lighten-3 footer-text" href="https://github.com/auldsy-ababua">See My Github</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2016 Gameswap
+                </div>
+            </div>
+        </footer>
+    </section>
+
+
+
+
+    <!--profile screen-->
+    <section id="profile">
+        <form name="add-owned" id="add-owned" class="col s12" action="index_submit" method="post" accept-charset="utf-8">
+            <div class="row">
+                <div class="col s11" id="seach-input">
+                    <label for="owned"></label>
+                    <input type="search" name="owned" id="gamesearch" placeholder="Search for games to add to your profile">
+                </div>
+                <div class="col s1" id="search-submit">
+                    <button class="btn-floating btn-large waves-effect waves-light red" type="submit"
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>
+            </div>
+
+
+            <ul id="gamescontainer">
+            </ul>
+        </form>
+
+        <div id="own-and-want" style="display: flex">
+          <div style='flex: 1'>
+            <h2>Games I own</h2>
+
+            <ul id="gamesIOwn">
+            </ul>
+          </div>
+          <div style='flex: 1'>
+            <h2>Games I want</h2>
+
+            <ul id="gamesIWant">
+
+            </ul>
+          </div>
+        </div>
+    </section>
+
+
+
+    <!--search screen-->
+    <section id="search">
+        <div class="caption center-align">
+            <h2>Your Local Matches</h2>
+        </div>
+        <div id="match-data">
+        </div>
+        <div id="template-parent" style="display:none">
+            <div class="profile-template">
+                <hr/>
+                <h5 class="email">Email: <span></span></h5>
+                <h5 class="city">City: <span></span></h5>
+                <h5 class="theyOwn">Owns: <span></span></h5>
+                <h5 class="theyWant">Wants Your Copy of: <span></span></h5>
+                <hr/>
+            </div>
+        </div>
+    </section>
+</body>
+
+<!--Import jQuery before materialize.js-->
+<script src="gameswap.1.0.0.js"></script>
+
+<script>
+
+function gamer(response){
+
+  if(!response) return;
+
+  var limit=10;
+  var current = 0;
+
+  response.results.forEach(function(val){
+    current++;
+
+    if(current>limit) return;
+
+    var addOwnButton = $("<button type='button' class='waves-effect waves-light btn'>Add To Games I Own</button>");
+    var addWantButton = $("<button type='button' class='waves-effect waves-light btn'>Add To Games I Want</button>");
+
+    addOwnButton.click( gameswapApp.addClosure(val.name,"own"));
+    addWantButton.click( gameswapApp.addClosure(val.name,"want"));
+
+    var li = $("<li></li>");
+    li.append(val.name).append(addOwnButton).append(addWantButton)
+    $("#gamescontainer").append(li)
+
+  })
+  console.log(response)
+}
+</script>
+
+</html>
