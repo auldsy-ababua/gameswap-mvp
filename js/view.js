@@ -146,7 +146,7 @@ export default class GameswapView {
     showGame(response) {
         var li = $("<li></li>");
 
-        var removeGameButton = $("<button type='button' class='waves-effect waves-light btn'>Delete</button>");
+        var removeGameButton = $("<button type='button' class='waves-effect waves-light btn del-button'>Delete</button>");
 
         li.append(response.game);
         li.append(removeGameButton);
