@@ -4,7 +4,7 @@
 https://gameswap-aulds.herokuapp.com/
 
 ### _API's_ _USED_:<br>
-1. [IGDB: Free Video Game Database] (https://www.igdb.com/api)
+1. [GIant Bomb Video Game API](http://www.giantbomb.com/api/)
 
 ### _SUMMARY_:<br>
 Each user creates an account with his username, password, and city and state. Once created, the user adds specific video games he/she wants to own and ones that he/she has and is willing to trade. These games are selected from a list generated via the search function (which accesses a video game api). Each listing has two buttons: "Games I Own" and "Games I Want". By hitting each button, that game is listed into its respective database in the backend and is reflected on the users profile page. <br>
