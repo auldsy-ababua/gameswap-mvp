@@ -7,6 +7,7 @@ import GameswapView from './view.js';
 
 $(document).ready(function() {
 
+
     window.gameswapApp = new GameswapView();
     $("#logoutMenu").hide();
     $("#searchMenu").hide();
@@ -138,4 +139,6 @@ $(document).ready(function() {
         $("#searchMenu").hide();
         $("#profileMenu").hide();
     }
+    $(".dropdown-button").dropdown();
+
 });

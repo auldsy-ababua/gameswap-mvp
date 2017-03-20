@@ -184,6 +184,7 @@
 	        $("#searchMenu").hide();
 	        $("#profileMenu").hide();
 	    }
+	    $(".dropdown-button").dropdown();
 	});
 
 /***/ },
