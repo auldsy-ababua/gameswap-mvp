@@ -320,5 +320,5 @@ app.use('*', function(req, res) {
     });
 });
 
-app.listen(config.PORT);
 exports.app = app;
+exports.runServer = runServer;
