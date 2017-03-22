@@ -90,6 +90,21 @@ select {
 
   /**  MOBILE LAYOUT  (portrait and landscape) **/
 @media only screen and (max-width : 500px) {
+
+  body, #profile, #add-owned, .nav, .nav-wrapper {
+    width: 100%;
+  }
+
+  .dropdown-button {
+    padding-right: 11px;
+  }
+
+  #game-search-row {
+    width: 85%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   #own-and-want div h2 {
 		font-size: 2.1em;
   }
@@ -103,11 +118,35 @@ select {
     padding-right: 4px !important;
     height: 32px !important;
   }
+
+  #gamescontainer li {
+    margin-right: 0px;
+  }
+  #own-button {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 7px;
+  }
+  #want-button {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
 }
 
 /**  TABLET LAYOUT  **/
 @media only screen and (max-width : 979px) {
     /**  TABLET-THEME  **/
+
+    .nav-wrapper {
+      width: 100%;
+    }
+
+    #game-search-row {
+      width: 85%;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
 
     #own-and-want div h2 {
       font-size: : 3.1em;
