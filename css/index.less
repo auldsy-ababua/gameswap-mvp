@@ -2,10 +2,143 @@
 
 @import (less) 'node_modules/materialize-css/dist/css/materialize.css';
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.slides li img {
+  width: 100%;
+}
+
+#gamesIWant li {
+  font-size: 2.1rem !important;
+}
+
+#gamesIWant li button {
+  left: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#gamesIOwn li {
+  font-size: 2.1rem !important;
+}
+
+#gamesIOwn li button {
+  left: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#gamescontainer {
+  margin: auto;
+	text-align: center;
+}
+#gamescontainer li{
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.footer-text {
+  font-size: 1.45rem;
+}
+
+#home, #loginform, #create-profile, #profile, #search, #matches{
+  display: none;
+}
+
+.nav, #search-button, #del-button {
+  font-family: 'Bahiana', cursive;
+}
+
+.nav ul a {
+  font-size: 2rem;
+}
+
+.brand-logo {
+  font-size: 4.1rem !important;
+}
+
+.profile-template h5 {
+  padding-left: 15px;
+}
+
+.profile-template {
+  background-color: white;
+}
+
+.row {
+  margin-top: 1.4rem;
+}
+
+#own-and-want {
+  padding-left: 1.5rem;
+}
+
+#add-owned ul {
+  display: inline-block;
+}
+
+#add-owned ul li {
+  display: inline-block;
+}
+
+select {
+  display: inline-block;
+}
 
 
-  .slides li img {
-    width: 100%;
+  /**  MOBILE LAYOUT  (portrait and landscape) **/
+@media only screen and (max-width : 500px) {
+  #own-and-want div h2 {
+		font-size: 2.1em;
+  }
+
+  #gamesIOwn li, #gamesIWant li{
+    font-size: 1.1em !important;
+  }
+
+  #gamesIOwn li button, #gamesIWant li button{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    height: 32px !important;
+  }
+}
+
+/**  TABLET LAYOUT  **/
+@media only screen and (max-width : 979px) {
+    /**  TABLET-THEME  **/
+
+    #own-and-want div h2 {
+      font-size: : 3.1em;
+    }
+
+    #gamesIWant li {
+      font-size: 2.1rem !important;
+    }
+
+    #gamesIWant li button {
+      left: 12px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    #gamesIOwn li {
+      font-size: 2.1rem !important;
+    }
+
+    #gamesIOwn li button {
+      left: 12px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+}
+
+/**  DESKTOP LAYOUT **/
+@media only screen and (min-width : 980px) {
+
+  #own-and-want div h2 {
+    font-size: : 3.1em;
   }
 
   #gamesIWant li {
@@ -27,64 +160,7 @@
     padding-left: 15px;
     padding-right: 15px;
   }
-
-  #gamescontainer {
-    margin: auto;
-  	text-align: center;
-  }
-  #gamescontainer li{
-    display: inline-block;
-    margin-right: 8px;
-  }
-
-  .footer-text {
-    font-size: 1.45rem;
-  }
-
-  #home, #loginform, #create-profile, #profile, #search, #matches{
-    display: none;
-    font-family: 'Bahiana', cursive;
-  }
-
-  .nav {
-    font-family: 'Bahiana', cursive;
-  }
-
-  .nav ul a {
-    font-size: 2rem;
-  }
-
-  .brand-logo {
-    font-size: 4.1rem !important;
-  }
-
-  .profile-template h5 {
-    font-family: 'Orbitron', sans-serif;
-  }
-
-  .profile-template {
-    background-color: white;
-  }
-
-  .row {
-    margin-top: 1.4rem;
-  }
-
-  #own-and-want {
-    padding-left: 1.5rem;
-  }
-
-  #add-owned ul {
-    display: inline-block;
-  }
-
-  #add-owned ul li {
-    display: inline-block;
-  }
-
-  select {
-    display: inline-block;
-  }
+}
 
 /*@media only screen and (min-device-width: 480px){
   #own-and-want div h2 {

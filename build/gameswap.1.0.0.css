@@ -7369,6 +7369,9 @@ button.picker__close:focus {
     margin-bottom: 5em;
   }
 }
+body {
+  font-family: 'Roboto', sans-serif;
+}
 .slides li img {
   width: 100%;
 }
@@ -7406,9 +7409,10 @@ button.picker__close:focus {
 #search,
 #matches {
   display: none;
-  font-family: 'Bahiana', cursive;
 }
-.nav {
+.nav,
+#search-button,
+#del-button {
   font-family: 'Bahiana', cursive;
 }
 .nav ul a {
@@ -7418,7 +7422,7 @@ button.picker__close:focus {
   font-size: 4.1rem !important;
 }
 .profile-template h5 {
-  font-family: 'Orbitron', sans-serif;
+  padding-left: 15px;
 }
 .profile-template {
   background-color: white;
@@ -7437,6 +7441,67 @@ button.picker__close:focus {
 }
 select {
   display: inline-block;
+}
+/**  MOBILE LAYOUT  (portrait and landscape) **/
+@media only screen and (max-width: 500px) {
+  #own-and-want div h2 {
+    font-size: 2.1em;
+  }
+  #gamesIOwn li,
+  #gamesIWant li {
+    font-size: 1.1em !important;
+  }
+  #gamesIOwn li button,
+  #gamesIWant li button {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    height: 32px !important;
+  }
+}
+/**  TABLET LAYOUT  **/
+@media only screen and (max-width: 979px) {
+  /**  TABLET-THEME  **/
+  #own-and-want div h2 {
+    font-size: : 3.1em;
+  }
+  #gamesIWant li {
+    font-size: 2.1rem !important;
+  }
+  #gamesIWant li button {
+    left: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #gamesIOwn li {
+    font-size: 2.1rem !important;
+  }
+  #gamesIOwn li button {
+    left: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+/**  DESKTOP LAYOUT **/
+@media only screen and (min-width: 980px) {
+  #own-and-want div h2 {
+    font-size: : 3.1em;
+  }
+  #gamesIWant li {
+    font-size: 2.1rem !important;
+  }
+  #gamesIWant li button {
+    left: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #gamesIOwn li {
+    font-size: 2.1rem !important;
+  }
+  #gamesIOwn li button {
+    left: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 /*@media only screen and (min-device-width: 480px){
   #own-and-want div h2 {
