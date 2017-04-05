@@ -2,6 +2,9 @@
   "name": "gameswap",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "4.4.6"
+  },
   "main": "js/main.js",
   "dependencies": {
     "bcrypt": "^0.8.7",
