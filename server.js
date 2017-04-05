@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(jsonParser);
 
-var strategy = new BasicStrategy(function(username, password, callback) {
+var strategy = new BasicStrategy({ disableBasicChallenge: true },function(username, password, callback) {
     User.findOne({
         username: username
     }, function(err, user) {
