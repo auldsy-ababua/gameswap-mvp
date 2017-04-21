@@ -66,7 +66,7 @@ export default class GameswapView {
         let first_name = $("#first_name").val();
         let last_name = $("#last_name").val();
         let email = $("#email").val();
-        let password = $("#password").val();
+        let password = $("#signinForm #password").val();
         let city = $("#city").val();
         let state = $("#state").val();
 
