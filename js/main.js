@@ -20,6 +20,7 @@ $(document).ready(function() {
         $("#logoutMenu").show();
         $("#searchMenu").show();
         $("#profileMenu").show();
+        $(".nav #profileMenu").trigger( "click" );
         return false;
     });
 
