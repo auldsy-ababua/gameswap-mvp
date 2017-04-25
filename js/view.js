@@ -62,7 +62,7 @@ export default class GameswapView {
         this.services.games(gamesearch, callback);
     }
 
-    signin() {
+    signin(cb) {
         let first_name = $("#first_name").val();
         let last_name = $("#last_name").val();
         let email = $("#email").val();
@@ -74,6 +74,9 @@ export default class GameswapView {
             if (response) {
                 localStorage.username = email;
                 localStorage.password = password;
+                cb('success');
+            } else {
+                cb('fail');
             }
         };
         this.services.signin(first_name, last_name, email, password, city, state, callback);
