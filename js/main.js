@@ -29,7 +29,15 @@ $(document).ready(function() {
     $("#signinForm").submit(function(event) {
         event.preventDefault();
         console.log("The signin");
-        gameswapApp.signin();
+        gameswapApp.signin(function (res) {
+          if ( res == 'success' ) {
+            $(".nav #profileMenu").trigger('click');
+            $("#loginMenu").hide();
+            $("#logoutMenu").show();
+            $("#searchMenu").show();
+            $("#profileMenu").show();
+          }
+        });
         return false;
     });
 
