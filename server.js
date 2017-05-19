@@ -85,6 +85,61 @@ var bcrypt = require('bcryptjs');
 
 //signin endpoint
 //(create new user) POST (name, email, password, city)
+app.post('/dologin', jsonParser, function(req, res) {
+ 
+    var data=req.body;
+    //return res.status(200).json({data: data});
+
+    User.findOne({email:data.username}).exec(function(err, user){
+        var msg = "", data = null,status=false;
+        if(user){
+
+        console.log(user);
+
+      user.validatePassword(req.body.password, function(err, isValid) {
+               console.log('isValid',isValid);
+
+            if(isValid==true){
+            msg = "successfuly Login";
+
+ data=user
+ status=true
+   return res.status(200).json({
+              status:status,  message: msg, data: data
+            });
+
+           }else{
+
+            msg = "Invalid password";
+   return res.status(200).json({
+              status:status,  message: msg, data: data
+            });
+
+           }
+
+         });
+
+
+
+        } else {
+             msg = "Invalid username or password";
+
+  return res.status(200).json({
+              status:status,  message: msg, data: data
+            });
+        }
+
+
+
+ 
+
+    });
+
+});
+
+
+//signin endpoint
+//(create new user) POST (name, email, password, city)
 app.post('/users', jsonParser, function(req, res) {
     console.log(req.body);
     if (!req.body) {
@@ -162,18 +217,49 @@ app.post('/users', jsonParser, function(req, res) {
                 email: req.body.username
             });
 
-            user.save(function(err) {
+
+User.count({email:req.body.username}).exec(function(err,cnt){
+
+if(cnt==1){
+    var status=false,msg='email already exists',data=cnt
+
+ return res.status(200).json({
+              status:status,  message: msg, data: data
+            });
+}else{
+
+ user.save(function(err,user) {
                 if (err) {
                     return res.status(500).json({
                         message: 'Internal server error'
                     });
                 }
+    var status=true,msg='successfully reigster',data=user
 
-                return res.status(201).json({});
+ return res.status(200).json({
+              status:status,  message: msg, data: data
             });
+
+
+
+            });
+
+
+
+
+}
+
+
+})
+
+           
+
+
         });
     });
 });
+
+
 
 app.get('/users/:id', function(req, res) {
     User.findOne({
@@ -271,19 +357,31 @@ app.get('/mygames', jsonParser, passport.authenticate('basic', {
 app.post('/mygames', passport.authenticate('basic', {
     session: false
 }), function(req, res) {
-    console.log(req.body);
-    UserGame.create({
-        "user": req.user._id,
-        "game": req.body.game,
-        "own": req.body.own
-    }, function(err, item) {
-        if (err) {
+    //console.log(req.body);
+    UserGame.find({user:req.user._id,game:req.body.game,own:req.body.own}).exec(function(err,cnt){
+        if(err){
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
+        } else {
+            if(cnt <= 0){
+                UserGame.create({
+                    "user": req.user._id,
+                    "game": req.body.game,
+                    "own": req.body.own
+                }, function(err, item) {
+                    if (err) {
+                        return res.status(500).json({
+                            message: 'Internal Server Error'
+                        });
+                    }
+                    res.status(201).json(item);
+                });
+            } else {
+                res.status(201).json(cnt);
+            }
         }
-        res.status(201).json(item);
-    });
+    }) 
 });
 
 //remove games
