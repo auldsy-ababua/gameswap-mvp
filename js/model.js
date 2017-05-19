@@ -60,6 +60,30 @@ export default class GameswapServices {
     }
 
 
+    // brainium code
+
+      doLogin(username,password,callback) {
+        let data = {
+          "username": username,
+          "password": password,
+          
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/dologin",
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(response) {
+
+                //console.log("doLogin > response : ", response);
+                callback(response);
+            }
+        });
+    }
+    // brainium code
+
     //bind for add games endpoint
     signin(first_name, last_name,email,password,city,state,callback) {
         let data = {
@@ -78,7 +102,8 @@ export default class GameswapServices {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(response) {
-                callback(response);
+              console.log(response)
+               callback(response);
             }
         });
     }
