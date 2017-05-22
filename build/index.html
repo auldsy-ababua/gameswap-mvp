@@ -17,8 +17,9 @@
       <li><a id="homeMenu" href="#">Home</a></li>
       <li><a id="searchMenu" href="#">Matches</a></li>
       <li><a id="profileMenu" href="#">Profile</a></li>
-      <li><a id="loginMenu" href="#">Login</a></li>
       <li><a id="logoutMenu" href="#">Logout</a></li>
+        <li><a id="loginMenu" href="#">Login</a></li>
+
     </ul>
     <nav class="nav">
         <div class="nav-wrapper">
@@ -35,11 +36,11 @@
                 <ul>
                     <li>
                         <label for="usermail">Username</label>
-                        <input type="text" name="username" id="username" placeholder="username" required>
+                        <input type="text" name="username" id="Loginusername" placeholder="username" required>
                     </li>
                     <li>
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="password" required>
+                        <input type="password" name="password" id="Loginpassword" placeholder="password" required>
                     </li>
                     <li>
                         <input type="submit" class="waves-effect waves-light btn" id="login-button" value="Login">
@@ -47,6 +48,9 @@
                 </ul>
                 <br>
                 <h5 id="makeProfile">Don't have an account? <a href="#">Sign up here!!!!!</a></h5>
+
+                                <div  id="error_text"> </div>
+
             </form>
         </section>
     </section>
@@ -88,6 +92,8 @@
                 </div>
                 <input type="submit" class="waves-effect waves-light btn" value="Let's trade!">
             </form>
+                                            <div id="error_text_signup"></div>
+
         </div>
     </section>
 
@@ -131,7 +137,8 @@
 
 
     <!--profile screen-->
-    <section id="profile">
+        <section id="profile">
+
         <form name="add-owned" id="add-owned" class="col s12" action="index_submit" method="post" accept-charset="utf-8">
             <div class="row" id="game-search-row">
                 <div class="col s11" id="seach-input">
@@ -143,6 +150,14 @@
                         <i class="material-icons">search</i>
                     </button>
                 </div>
+                
+
+                <div id="loadergame"></div>
+                <div id="showempty">
+                  <p class="profileText">
+                Oh No! You have no matches yet! Please fill out your games profile by adding more games to the “Games I Want” and “Games I Own” sections to increase the amount of matches you have! The more games you’re willing to trade, the more matches you are likely to receive!
+                 </p>
+                 </div>
             </div>
 
 
@@ -165,6 +180,7 @@
             </ul>
           </div>
         </div>
+        <p id="emptyMsgContainer" class="profileText"></p>
     </section>
 
 
@@ -201,8 +217,11 @@ function gamer(response){
 
   var limit=10;
   var current = 0;
-
+                $("#loadergame").html('')
+         $("#showempty").hide()
   response.results.forEach(function(val){
+ 
+
     current++;
 
     if(current>limit) return;

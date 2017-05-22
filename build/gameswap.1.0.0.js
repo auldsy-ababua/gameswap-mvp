@@ -61,17 +61,17 @@
 	    $("#logoutMenu").hide();
 	    $("#searchMenu").hide();
 	    $("#profileMenu").hide();
-	    $("#login").submit(function (event) {
-	        event.preventDefault();
-	        console.log("The user is logged in");
-	        gameswapApp.games("#username", "#password");
-	        $("#loginMenu").hide();
-	        $("#logoutMenu").show();
-	        $("#searchMenu").show();
-	        $("#profileMenu").show();
-	        $(".nav #profileMenu").trigger("click");
-	        return false;
-	    });
+	    // $("#login").submit(function(event) {
+	    //     event.preventDefault();
+	    //     console.log("The user is logged in");
+	    //     gameswapApp.games("#username", "#password");
+	    //     $("#loginMenu").hide();
+	    //     $("#logoutMenu").show();
+	    //     $("#searchMenu").show();
+	    //     $("#profileMenu").show();
+	    //     $(".nav #profileMenu").trigger( "click" );
+	    //     return false;
+	    // });
 	
 	    $("#signinForm").submit(function (event) {
 	        event.preventDefault();
@@ -91,6 +91,8 @@
 	    $("#add-owned").submit(function (event) {
 	        event.preventDefault();
 	        console.log("add-owned");
+	        $("#loadergame").html('<img src="images/loader.gif"/>');
+	
 	        gameswapApp.searchGames("#gamesearch");
 	        return false;
 	    });
@@ -105,6 +107,8 @@
 	    });
 	
 	    $("#logoutMenu").click(function (e) {
+	        $("#gamesearch").val('');
+	        $("ul#gamescontainer li").remove();
 	        console.log('logged out the user', localStorage.username);
 	        delete localStorage.username;
 	        delete localStorage.password;
@@ -122,11 +126,17 @@
 	
 	    //login and go home
 	    $("#loginform #login-button").click(function (e) {
-	        $("#home").show();
-	        $(".nav").show();
-	        $("#create-profile").hide();
-	        $("#loginform").hide();
-	        $("#search").hide();
+	
+	        console.log('res', 'res');
+	
+	        gameswapApp.login(function (res) {
+	            console.log('res', JSON.stringify(res));
+	        });
+	        // $("#home").show();
+	        // $(".nav").show();
+	        // $("#create-profile").hide();
+	        // $("#loginform").hide();
+	        // $("#search").hide();
 	    });
 	
 	    //hit sign up at bottom of login to go to make profile page
@@ -177,7 +187,9 @@
 	        $("#loginform").hide();
 	        $("#home").hide();
 	        $("#search").hide();
+	        $("gamesearch").val();
 	        gameswapApp.getGames();
+	        gameswapApp.showSearchResults(".games-owned", ".games-wanted", ".city");
 	    });
 	
 	    //page refresh
@@ -222,7 +234,9 @@
 	
 	        this.services = new _model2.default();
 	        console.log("ready!");
+	        $("#gamesearch").val('');
 	        $("#home").show();
+	        $("#gamescontainer").val('');
 	        this.showForm();
 	        this.profArray = [];
 	    }
@@ -249,6 +263,46 @@
 	            };
 	            this.services.mygames(usernameVal, passwordVal, callback);
 	        }
+	
+	        // brainium code
+	
+	    }, {
+	        key: "login",
+	        value: function login() {
+	            event.preventDefault();
+	
+	            var username = $("#Loginusername").val();
+	            var password = $("#Loginpassword").val();
+	
+	            /*let callback = function(response) {
+	                if (response) {
+	                    console.log('response',response);
+	                }
+	            };*/
+	            $("#error_text").hide().fadeIn().html('<img src="images/loader.gif"/>');
+	
+	            this.services.doLogin(username, password, function (loginResponse) {
+	                console.log(loginResponse);
+	                $("#error_text").hide().fadeIn().html('');
+	
+	                if (loginResponse.status == true) {
+	
+	                    localStorage.setItem('username', username);
+	                    localStorage.setItem('password', password);
+	
+	                    $("#loginMenu").hide();
+	                    $("#logoutMenu").show();
+	                    $("#searchMenu").show();
+	                    $("#profileMenu").show();
+	
+	                    $(".nav #profileMenu").trigger("click");
+	                } else {
+	
+	                    console.log(loginResponse.message);
+	                    $("#error_text").hide().fadeIn().html(loginResponse.message);
+	                }
+	            });
+	        }
 	    }, {
 	        key: "getGames",
 	        value: function getGames() {
@@ -256,7 +310,10 @@
 	            $("#gamesIWant").empty();
 	            var myClass = this;
 	            var callback = function callback(response) {
-	                console.log(response);
+	                console.log("Get Games : ", response.length);
+	                if (response.length <= 0) {
+	                    $("#emptyMsgContainer").text('You have no games added to your profile! You can’t match with anyone until we know what you want and what you have. Use the search bar above to find games to add to your profile!');
+	                }
 	                response.forEach(function (game) {
 	                    console.log(game);
 	                    myClass.showGame(game);
@@ -276,16 +333,19 @@
 	            var gamesearch = $(gameIput).val();
 	
 	            $("#gamescontainer").empty();
+	
 	            var callback = function callback(response) {
 	                if (response) {
 	                    console.log(response);
 	                }
 	            };
+	
 	            this.services.games(gamesearch, callback);
 	        }
 	    }, {
 	        key: "signin",
 	        value: function signin(cb) {
+	
 	            var first_name = $("#first_name").val();
 	            var last_name = $("#last_name").val();
 	            var email = $("#email").val();
@@ -293,16 +353,39 @@
 	            var city = $("#city").val();
 	            var state = $("#state").val();
 	
-	            var callback = function callback(response) {
-	                if (response) {
+	            // let callback = function(response) {
+	            //     if (response) {
+	            //         localStorage.username = email;
+	            //         localStorage.password = password;
+	            //         cb('success');
+	            //     } else {
+	            //         cb('fail');
+	            //     }
+	            // };
+	
+	            $("#error_text_signup").hide().fadeIn().html('<img src="images/loader.gif"/>');
+	
+	            this.services.signin(first_name, last_name, email, password, city, state, function (response) {
+	                console.log(response);
+	
+	                if (response.status == true) {
+	                    $("#first_name").val('');
+	                    $("#last_name").val('');
+	                    $("#email").val('');
+	                    $("#signinForm #password").val('');
+	                    $("#city").val('');
+	                    $("#state").val('');
+	
 	                    localStorage.username = email;
 	                    localStorage.password = password;
 	                    cb('success');
+	                    $("#error_text_signup").hide().fadeIn().html('');
 	                } else {
-	                    cb('fail');
+	
+	                    console.log(response.message);
+	                    $("#error_text_signup").hide().fadeIn().html(response.message);
 	                }
-	            };
-	            this.services.signin(first_name, last_name, email, password, city, state, callback);
+	            });
 	        }
 	    }, {
 	        key: "showSearchResults",
@@ -310,7 +393,9 @@
 	            $("#match-data").empty();
 	            function callback(data) {
 	                var container = $("#match-data");
-	                console.log(data);
+	                if (data.length <= 0) {
+	                    $("#match-data").append('<p class="profileText">This is where you come to see your matches within your city. To match with others, please go to your profile and fill out the form to let us know what games you want and what games you own</p>');
+	                }
 	                data.forEach(function (value, index) {
 	                    $.ajax({
 	                        type: "GET",
@@ -319,6 +404,7 @@
 	                        async: false,
 	                        success: function success(response) {
 	                            var matchTemplate = $("#template-parent .profile-template").clone();
+	                            console.log("match : ", response.games.length);
 	                            response.games.forEach(function (userGames) {
 	                                //and if for spans game owned and game wanted
 	                                if (userGames.own == true) {
@@ -363,9 +449,11 @@
 	                    },
 	                    async: false,
 	                    success: function success(response) {
+	                        console.log("Res : ", response);
 	                        var li = myClass.showGame(response);
 	                        $(container).append(li);
-	                        console.log("response.game");
+	                        $("#emptyMsgContainer").hide();
+	                        //console.log("response.gameeeeeee");
 	                    }
 	                });
 	            };
@@ -373,15 +461,16 @@
 	    }, {
 	        key: "showGame",
 	        value: function showGame(response) {
-	            var li = $("<li></li>");
-	
-	            var removeGameButton = $("<button type='button' class='waves-effect waves-light btn del-button' id='del-button'>Delete</button>");
-	
-	            li.append(response.game);
-	            li.append(removeGameButton);
-	
-	            removeGameButton.click(this.deleteClosure(response._id, response.own, li));
-	            return li;
+	            if (response.game) {
+	                var li = $("<li></li>");
+	                var removeGameButton = $("<button type='button' class='waves-effect waves-light btn del-button' id='del-button'>Delete</button>");
+	                li.append(response.game);
+	                li.append(removeGameButton);
+	                removeGameButton.click(this.deleteClosure(response._id, response.own, li));
+	                return li;
+	            } else {
+	                alert("Duplicate entry");
+	            }
 	        }
 	    }, {
 	        key: "deleteClosure",
@@ -490,6 +579,32 @@
 	            */
 	        }
 	
+	        // brainium code
+	
+	    }, {
+	        key: "doLogin",
+	        value: function doLogin(username, password, callback) {
+	            var data = {
+	                "username": username,
+	                "password": password
+	
+	            };
+	
+	            $.ajax({
+	                type: "POST",
+	                url: "/dologin",
+	                dataType: 'json',
+	                contentType: 'application/json',
+	                data: JSON.stringify(data),
+	                success: function success(response) {
+	
+	                    //console.log("doLogin > response : ", response);
+	                    callback(response);
+	                }
+	            });
+	        }
+	        // brainium code
+	
 	        //bind for add games endpoint
 	
 	    }, {
@@ -511,6 +626,7 @@
 	                contentType: 'application/json',
 	                data: JSON.stringify(data),
 	                success: function success(response) {
+	                    console.log(response);
 	                    callback(response);
 	                }
 	            });
