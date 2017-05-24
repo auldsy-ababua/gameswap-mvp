@@ -295,9 +295,9 @@
 	            var myClass = this;
 	            var callback = function callback(response) {
 	                console.log("Get Games : ", response.length);
-	                if (response.length <= 0) {
-	                    $("#emptyMsgContainer").text('You have no games added to your profile! You can’t match with anyone until we know what you want and what you have. Use the search bar above to find games to add to your profile!');
-	                }
+	                /*if(response.length <= 0){
+	                  $("#emptyMsgContainer").text('You have no games added to your profile! You can’t match with anyone until we know what you want and what you have. Use the search bar above to find games to add to your profile!')
+	                }*/
 	                response.forEach(function (game) {
 	                    console.log(game);
 	                    myClass.showGame(game);
@@ -380,9 +380,9 @@
 	            $("#match-data").empty();
 	            function callback(data) {
 	                var container = $("#match-data");
-	                if (data.length <= 0) {
+	                /*if(data.length <= 0){
 	                    $("#match-data").append('<p class="profileText">This is where you come to see your matches within your city. To match with others, please go to your profile and fill out the form to let us know what games you want and what games you own</p>');
-	                }
+	                }*/
 	                data.forEach(function (value, index) {
 	                    $.ajax({
 	                        type: "GET",

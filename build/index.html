@@ -103,7 +103,11 @@
     <section id="home">
         <ul class="slides">
             <li>
-                <img src="https://images.unsplash.com/10/wii.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=43cfc3deeed70e165663284179867d30">
+                <div class="hero">
+                  <div class="transbox">
+                    <h2>Demo Login Credentials: "demo2@gmail.com" and "Hello123"</h2>
+                  </div>
+                </div>
                 <div class="caption center-align">
                     <h3>The End of Rip-off Trades Is Here</h3>
                 </div>
@@ -127,7 +131,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    © 2016 Gameswap
+                    © 2017 Gameswap
                 </div>
             </div>
         </footer>
@@ -150,14 +154,14 @@
                         <i class="material-icons">search</i>
                     </button>
                 </div>
-                
+
 
                 <div id="loadergame"></div>
-                <div id="showempty">
+                <!--<div id="showempty">
                   <p class="profileText">
-                Oh No! You have no matches yet! Please fill out your games profile by adding more games to the “Games I Want” and “Games I Own” sections to increase the amount of matches you have! The more games you’re willing to trade, the more matches you are likely to receive!
-                 </p>
-                 </div>
+                    Oh No! You have no matches yet! Please fill out your games profile by adding more games to the “Games I Want” and “Games I Own” sections to increase the amount of matches you have! The more games you’re willing to trade, the more matches you are likely to receive!
+                  </p>
+                </div>-->
             </div>
 
 
@@ -220,7 +224,7 @@ function gamer(response){
                 $("#loadergame").html('')
          $("#showempty").hide()
   response.results.forEach(function(val){
- 
+
 
     current++;
 

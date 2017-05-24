@@ -7372,8 +7372,28 @@ button.picker__close:focus {
 body {
   font-family: 'Roboto', sans-serif;
 }
-.slides li img {
+.hero {
+  background-image: url("https://images.unsplash.com/10/wii.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=43cfc3deeed70e165663284179867d30");
   width: 100%;
+  height: 390px;
+  position: relative;
+  background-size: cover;
+  background-position: center right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+div.transbox {
+  margin: 0 auto;
+  width: 88%;
+  height: 65%;
+  background-color: #ffffff;
+  opacity: 0.85;
+  /* For IE8 and earlier */
+}
+.transbox h2 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 #gamesIWant li {
   font-size: 2.1rem !important;
