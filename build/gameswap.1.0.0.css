@@ -7378,7 +7378,7 @@ body {
   height: 390px;
   position: relative;
   background-size: cover;
-  background-position: center right;
+  background-position: center top;
   display: flex;
   flex-direction: column;
   justify-content: center;
