@@ -53,6 +53,8 @@ passport.use(strategy);
 
 var runServer = function(callback) {
     mongoose.connect(config.DATABASE_URL, function(err) {
+        console.log("herehrerherhere");
+        console.log(config.DATABASE_URL);
         console.log(err);
         if (err && callback) {
             return callback(err);
@@ -93,48 +95,31 @@ app.post('/dologin', jsonParser, function(req, res) {
     User.findOne({email:data.username}).exec(function(err, user){
         var msg = "", data = null,status=false;
         if(user){
-
-        console.log(user);
-
-      user.validatePassword(req.body.password, function(err, isValid) {
-               console.log('isValid',isValid);
-
-            if(isValid==true){
-            msg = "successfuly Login";
-
- data=user
- status=true
-   return res.status(200).json({
-              status:status,  message: msg, data: data
+            console.log(user);
+            user.validatePassword(req.body.password, function(err, isValid) {
+                console.log('isValid',isValid);
+                if(isValid==true) {
+                    msg = "successfuly Login";
+                    data=user;
+                    status=true;
+                    console.log("here is succesfful")
+                    return res.status(200).json({
+                        status:status,  message: msg, data: data
+                    });
+                } else {
+                    msg = "Invalid password";
+                    return res.status(200).json({
+                        status: status, message: msg, data: data
+                    });
+                }
             });
-
-           }else{
-
-            msg = "Invalid password";
-   return res.status(200).json({
-              status:status,  message: msg, data: data
-            });
-
-           }
-
-         });
-
-
-
         } else {
-             msg = "Invalid username or password";
-
-  return res.status(200).json({
+            msg = "Invalid username or password";
+            return res.status(200).json({
               status:status,  message: msg, data: data
             });
         }
-
-
-
- 
-
     });
-
 });
 
 
@@ -382,6 +367,12 @@ app.post('/mygames', passport.authenticate('basic', {
             }
         }
     }) 
+});
+
+app.get('/test/upload', function(req, res) {
+    res.json({
+        message:"It is perfectly fixed!"
+    });
 });
 
 //remove games

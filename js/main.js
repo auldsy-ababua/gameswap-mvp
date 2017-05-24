@@ -11,17 +11,6 @@ $(document).ready(function() {
     $("#logoutMenu").hide();
     $("#searchMenu").hide();
     $("#profileMenu").hide();
-    // $("#login").submit(function(event) {
-    //     event.preventDefault();
-    //     console.log("The user is logged in");
-    //     gameswapApp.games("#username", "#password");
-    //     $("#loginMenu").hide();
-    //     $("#logoutMenu").show();
-    //     $("#searchMenu").show();
-    //     $("#profileMenu").show();
-    //     $(".nav #profileMenu").trigger( "click" );
-    //     return false;
-    // });
 
     $("#signinForm").submit(function(event) {
         event.preventDefault();
@@ -40,7 +29,7 @@ $(document).ready(function() {
 
     $("#add-owned").submit(function(event) {
         event.preventDefault();
-        console.log("add-owned");
+        console.log("add-owned here is real game search");
          $("#loadergame").html('<img src="images/loader.gif"/>');
 
         gameswapApp.searchGames("#gamesearch");
@@ -76,17 +65,12 @@ $(document).ready(function() {
 
     //login and go home
     $("#loginform #login-button").click(e => {
- 
-     console.log('res','res')
-
         gameswapApp.login(function (res) {
-     console.log('res',JSON.stringify(res))
+            $(".nav #profileMenu").trigger('click');
+            console.log('goint to profile');
+
         });
-        // $("#home").show();
-        // $(".nav").show();
-        // $("#create-profile").hide();
-        // $("#loginform").hide();
-        // $("#search").hide();
+        
     });
 
     //hit sign up at bottom of login to go to make profile page
@@ -138,6 +122,7 @@ $(document).ready(function() {
         $("#home").hide();
         $("#search").hide();
         $("gamesearch").val();
+    
         gameswapApp.getGames();
         gameswapApp.showSearchResults(".games-owned", ".games-wanted", ".city");
 

@@ -35,27 +35,25 @@ export default class GameswapServices {
     }
     games(name,callback) {
       var apikey = "1c320a06c5560acfd91bd4b90e98f6244e2cf1f3";
+        console.log("55555");
       $.ajax({
-          url: "http://api.giantbomb.com/search/",
+          url: "https://www.giantbomb.com/api/search",
           type: "get",
-          data: {api_key : apikey, query: name, field_list : "name, image", format : "jsonp", json_callback : "gamer", limit: 10 },
+          data: {
+              api_key : apikey,
+              query: name,
+              field_list : "name, image",
+              format : "jsonp",
+              json_callback : "gamer",
+              limit: 10 },
           dataType: "jsonp",
           success: function(response) {
+              console.log("hereherehre");
             callback(response);
           }
         });
 
-      /*
-      $.ajax({
-          type: "GET",
-          crossDomain: true,
-          dataType:"jsonp",
-          url: "http://www.giantbomb.com/api/games/?json_callback=?&api_key=446f10052bfc7212c109acba1d61a98f2c5ff30f&filter=name:"+name,
-          success: function(response) {
-            callback(response);
-          }
-      });
-      */
+      
 
     }
 

@@ -61,17 +61,6 @@
 	    $("#logoutMenu").hide();
 	    $("#searchMenu").hide();
 	    $("#profileMenu").hide();
-	    // $("#login").submit(function(event) {
-	    //     event.preventDefault();
-	    //     console.log("The user is logged in");
-	    //     gameswapApp.games("#username", "#password");
-	    //     $("#loginMenu").hide();
-	    //     $("#logoutMenu").show();
-	    //     $("#searchMenu").show();
-	    //     $("#profileMenu").show();
-	    //     $(".nav #profileMenu").trigger( "click" );
-	    //     return false;
-	    // });
 	
 	    $("#signinForm").submit(function (event) {
 	        event.preventDefault();
@@ -90,7 +79,7 @@
 	
 	    $("#add-owned").submit(function (event) {
 	        event.preventDefault();
-	        console.log("add-owned");
+	        console.log("add-owned here is real game search");
 	        $("#loadergame").html('<img src="images/loader.gif"/>');
 	
 	        gameswapApp.searchGames("#gamesearch");
@@ -126,17 +115,10 @@
 	
 	    //login and go home
 	    $("#loginform #login-button").click(function (e) {
-	
-	        console.log('res', 'res');
-	
 	        gameswapApp.login(function (res) {
-	            console.log('res', JSON.stringify(res));
+	            $(".nav #profileMenu").trigger('click');
+	            console.log('goint to profile');
 	        });
-	        // $("#home").show();
-	        // $(".nav").show();
-	        // $("#create-profile").hide();
-	        // $("#loginform").hide();
-	        // $("#search").hide();
 	    });
 	
 	    //hit sign up at bottom of login to go to make profile page
@@ -188,6 +170,7 @@
 	        $("#home").hide();
 	        $("#search").hide();
 	        $("gamesearch").val();
+	
 	        gameswapApp.getGames();
 	        gameswapApp.showSearchResults(".games-owned", ".games-wanted", ".city");
 	    });
@@ -268,7 +251,7 @@
 	
 	    }, {
 	        key: "login",
-	        value: function login() {
+	        value: function login(done) {
 	            event.preventDefault();
 	
 	            var username = $("#Loginusername").val();
@@ -295,7 +278,8 @@
 	                    $("#searchMenu").show();
 	                    $("#profileMenu").show();
 	
-	                    $(".nav #profileMenu").trigger("click");
+	                    console.log("adsflaskdfjawieofjaew");
+	                    done('success');
 	                } else {
 	
 	                    console.log(loginResponse.message);
@@ -330,12 +314,15 @@
 	    }, {
 	        key: "searchGames",
 	        value: function searchGames(gameIput) {
+	            console.log("22222");
 	            var gamesearch = $(gameIput).val();
 	
 	            $("#gamescontainer").empty();
 	
 	            var callback = function callback(response) {
+	                console.log("333");
 	                if (response) {
+	                    console.log("11111111111");
 	                    console.log(response);
 	                }
 	            };
@@ -556,27 +543,23 @@
 	        key: "games",
 	        value: function games(name, callback) {
 	            var apikey = "1c320a06c5560acfd91bd4b90e98f6244e2cf1f3";
+	            console.log("55555");
 	            $.ajax({
-	                url: "http://api.giantbomb.com/search/",
+	                url: "https://www.giantbomb.com/api/search",
 	                type: "get",
-	                data: { api_key: apikey, query: name, field_list: "name, image", format: "jsonp", json_callback: "gamer", limit: 10 },
+	                data: {
+	                    api_key: apikey,
+	                    query: name,
+	                    field_list: "name, image",
+	                    format: "jsonp",
+	                    json_callback: "gamer",
+	                    limit: 10 },
 	                dataType: "jsonp",
 	                success: function success(response) {
+	                    console.log("hereherehre");
 	                    callback(response);
 	                }
 	            });
-	
-	            /*
-	            $.ajax({
-	                type: "GET",
-	                crossDomain: true,
-	                dataType:"jsonp",
-	                url: "http://www.giantbomb.com/api/games/?json_callback=?&api_key=446f10052bfc7212c109acba1d61a98f2c5ff30f&filter=name:"+name,
-	                success: function(response) {
-	                  callback(response);
-	                }
-	            });
-	            */
 	        }
 	
 	        // brainium code

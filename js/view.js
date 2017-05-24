@@ -33,7 +33,7 @@ export default class GameswapView {
     }
     
     // brainium code
-    login(){
+    login(done){
         event.preventDefault();
         
         var username=$("#Loginusername").val()
@@ -59,8 +59,9 @@ export default class GameswapView {
                 $("#logoutMenu").show();
                 $("#searchMenu").show();
                 $("#profileMenu").show();
-                
-                $(".nav #profileMenu").trigger( "click" );
+
+                console.log("adsflaskdfjawieofjaew");
+                done('success');
                 
             }else{
                 
@@ -95,12 +96,15 @@ export default class GameswapView {
     }
     
     searchGames(gameIput) {
+        console.log("22222");
         let gamesearch = $(gameIput).val();
         
         $("#gamescontainer").empty();
         
         let callback = function(response) {
+            console.log("333");
             if (response) {
+                console.log("11111111111");
                 console.log(response);
                 
             }
